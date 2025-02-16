@@ -20,8 +20,12 @@ phases:
       - docker tag ${ECR_REPO_NAME}:latest ${ECR_IMAGE_URI}
       - docker push ${ECR_IMAGE_URI}
 
-      - printf '[{"name":"cth1-container", "imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
+      #- printf '[{"name":"cth1-container", "imageUri":"%s"}]' ${ECR_IMAGE_URI} > imagedefinitions.json
+      - printf '{"ImageURI":"%s"}' ${ECR_IMAGE_URI} > ImageDetail.json
 
 artifacts:
   files:
-    - imagedefinitions.json
+    #- imagedefinitions.json
+    - appspec.yml
+    - taskdef.json
+    - imageDetail.json
